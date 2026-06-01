@@ -16,6 +16,8 @@ export interface ImmersiveKitApp {
   requiredTier: UserTier;
   status: AppStatus;
   tags: string[];
+  /** When true, the SSO launch helper appends token/uid/source params to the URL. */
+  supportsSsoLaunch?: boolean;
 }
 
 export interface PocketBaseUser {

@@ -3,12 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import { usePocketBase } from '../hooks/usePocketBase';
 import { KeyRound, AlertCircle } from 'lucide-react';
 
+function loginErrorMessage(err: unknown): string {
+  if (err && typeof err === 'object') {
+    const e = err as Record<string, unknown>;
+    // PocketBase returns status 400 for bad credentials and 0/network errors otherwise
+    const status = typeof e['status'] === 'number' ? e['status'] : 0;
+    if (status === 400) return 'Incorrect email or password. Please try again.';
+    if (status === 403) return 'Your account does not have permission to sign in.';
+    if (status === 429) return 'Too many sign-in attempts. Please wait a moment and try again.';
+    // Network / fetch failure — no status
+    if (status === 0 || e['isAbort'] === true) {
+      return 'Could not reach the server. Check your connection and try again.';
+    }
+  }
+  return 'Something went wrong. Please try again.';
+}
+
 export default function Login() {
   const navigate = useNavigate();
   const { login } = usePocketBase();
 
-  const [email, setEmail] = useState('test@mjwdesign.ca');
-  const [password, setPassword] = useState('test1234z');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -19,8 +35,8 @@ export default function Login() {
     try {
       await login(email, password);
       navigate('/dashboard');
-    } catch {
-      setError('Invalid email or password. Please try again.');
+    } catch (err) {
+      setError(loginErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -44,9 +60,9 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-4">
           {error && (
-            <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-              <AlertCircle className="w-4 h-4 flex-shrink-0" />
-              {error}
+            <div className="flex items-start gap-2 px-3 py-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+              <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+              <span>{error}</span>
             </div>
           )}
 

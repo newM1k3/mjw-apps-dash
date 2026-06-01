@@ -26,9 +26,10 @@ interface Props {
   description: string;
   apps: ImmersiveKitApp[];
   userTier: UserTier;
+  isAuthenticated: boolean;
 }
 
-export default function SuiteSection({ suite, title, eyebrow, description, apps, userTier }: Props) {
+export default function SuiteSection({ suite, title, eyebrow, description, apps, userTier, isAuthenticated }: Props) {
   const { bar, eyebrow: eyebrowColor, border } = accentConfig[suite];
 
   return (
@@ -43,7 +44,7 @@ export default function SuiteSection({ suite, title, eyebrow, description, apps,
         </div>
         <div className={`hidden sm:block flex-shrink-0 mt-2 w-0.5 h-8 ${bar} rounded-full opacity-50`} />
       </div>
-      <AppGrid apps={apps} userTier={userTier} />
+      <AppGrid apps={apps} userTier={userTier} isAuthenticated={isAuthenticated} />
     </section>
   );
 }

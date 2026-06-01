@@ -1,12 +1,13 @@
 import {
   Network, GitBranch, Map, Workflow, BookOpenText, Sparkles,
   ClipboardCheck, FileText, Calculator, Megaphone, Gauge,
-  Star, CalendarDays, Code2, Flame, Lock, ExternalLink, ArrowUpRight,
+  Star, CalendarDays, Code2, Flame, Lock, ExternalLink, ArrowUpRight, AlertCircle, FlaskConical,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { ImmersiveKitApp, UserTier } from '../types';
-import { canAccess } from '../lib/access';
-import { redirectWithToken } from '../lib/sso';
+import { canAccess, canAccessInContext } from '../lib/access';
+import { launchTool, isValidUrl } from '../lib/sso';
+import { isBetaEnabled } from '../lib/beta';
 import TierBadge from './TierBadge';
 import StatusBadge from './StatusBadge';
 
@@ -31,16 +32,23 @@ const suiteGlow: Record<string, string> = {
 interface Props {
   app: ImmersiveKitApp;
   userTier: UserTier;
+  isAuthenticated: boolean;
 }
 
-export default function AppCard({ app, userTier }: Props) {
+export default function AppCard({ app, userTier, isAuthenticated }: Props) {
   const navigate = useNavigate();
   const Icon = iconMap[app.icon] ?? Network;
-  const accessible = canAccess(userTier, app.requiredTier);
-  const hasUrl = !!app.url;
 
-  const isLaunchable = accessible && hasUrl && app.status === 'live_or_ready';
+  const beta = isBetaEnabled();
+  const accessible = canAccessInContext(userTier, app.requiredTier, isAuthenticated);
+  const validUrl = isValidUrl(app.url);
+
+  // Show the Beta badge only when beta mode opened a tool beyond the user's natural tier.
+  const isBetaUnlocked = beta && isAuthenticated && !canAccess(userTier, app.requiredTier);
+
   const isLocked = !accessible;
+  const isLaunchable = accessible && validUrl && app.status === 'live_or_ready';
+  const isUrlMissing = accessible && app.status === 'live_or_ready' && !validUrl;
 
   const accentClass = suiteAccent[app.suite] ?? '';
   const glowClass = suiteGlow[app.suite] ?? '';
@@ -49,7 +57,7 @@ export default function AppCard({ app, userTier }: Props) {
     if (isLocked) {
       navigate(`/upgrade?tool=${app.id}`);
     } else if (isLaunchable) {
-      redirectWithToken(app.url!);
+      launchTool(app);
     }
   };
 
@@ -71,6 +79,12 @@ export default function AppCard({ app, userTier }: Props) {
           <div className="flex flex-wrap items-center gap-2 mb-1">
             <StatusBadge status={app.status} />
             <TierBadge tier={app.requiredTier} />
+            {isBetaUnlocked && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-teal-500/15 text-teal-300 border border-teal-500/30">
+                <FlaskConical className="w-3 h-3" />
+                Beta
+              </span>
+            )}
           </div>
           <h3 className="text-sm font-semibold text-white leading-snug mt-1">{app.name}</h3>
         </div>
@@ -98,6 +112,8 @@ export default function AppCard({ app, userTier }: Props) {
             ? 'bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20 hover:border-amber-500/50 cursor-pointer'
             : isLaunchable
             ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 hover:border-cyan-500/50 cursor-pointer'
+            : isUrlMissing
+            ? 'bg-slate-800/50 text-slate-500 border border-slate-700/50 cursor-not-allowed'
             : 'bg-slate-800/50 text-slate-600 border border-slate-700/50 cursor-not-allowed'
         }`}
       >
@@ -110,6 +126,11 @@ export default function AppCard({ app, userTier }: Props) {
           <>
             <ExternalLink className="w-4 h-4" />
             Launch Tool
+          </>
+        ) : isUrlMissing ? (
+          <>
+            <AlertCircle className="w-4 h-4" />
+            URL Pending
           </>
         ) : (
           'Coming Soon'
