@@ -1,8 +1,10 @@
 import { useState, useMemo } from 'react';
 import { usePocketBase } from '../hooks/usePocketBase';
+import { useHasVenue } from '../hooks/useHasVenue';
 import { apps, suiteMeta } from '../data/apps';
 import SuiteSection from '../components/SuiteSection';
 import SubscriptionGate from '../components/SubscriptionGate';
+import VenueOnboardingBanner from '../components/VenueOnboardingBanner';
 import TierBadge from '../components/TierBadge';
 import type { AppSuite, AppStatus } from '../types';
 import { canAccess, canAccessInContext } from '../lib/access';
@@ -49,6 +51,7 @@ const DEV_WARN_POCKETBASE = import.meta.env.DEV && !isPocketBaseUrlValid();
 
 export default function Dashboard() {
   const { user, tier, logout } = usePocketBase();
+  const { hasVenue } = useHasVenue(user?.id);
   const [activeTab, setActiveTab] = useState<FilterTab>('all');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [search, setSearch] = useState('');
@@ -151,6 +154,9 @@ export default function Dashboard() {
       </header>
 
       <main className="relative max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        {/* First-run onboarding: prompt users with no venue to run the wizard */}
+        {isAuthenticated && hasVenue === false && <VenueOnboardingBanner />}
+
         {/* Hero */}
         <div className="mb-10">
           <p className="text-xs font-semibold tracking-widest uppercase text-cyan-400 mb-2">

@@ -40,6 +40,16 @@ export const temporaryToolUrls: Record<string, string> = {
 };
 
 /**
+ * Venue Intelligence Wizard — the standalone onboarding app that seeds a venue
+ * (organization + project + experiences + membership) before any tool is used.
+ * It is NOT a tiered tool, so it lives here rather than in src/data/apps.ts.
+ * Resolution: VITE_VENUE_INTELLIGENCE_WIZARD_URL, then the deployed fallback.
+ */
+export const VENUE_WIZARD_URL: string =
+  import.meta.env.VITE_VENUE_INTELLIGENCE_WIZARD_URL?.trim() ||
+  'https://venue-intel-wizard.netlify.app';
+
+/**
  * Resolves the launch URL for a tool.
  *
  * @param appId   The tool ID from src/data/apps.ts.

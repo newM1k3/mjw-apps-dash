@@ -12,7 +12,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('lock-mapping-studio', import.meta.env.VITE_LOCK_MAPPING_STUDIO_URL),
     requiredTier: 'pro',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['locks', 'dependencies', 'room design'],
   },
   {
@@ -25,7 +25,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('puzzle-dependency-auditor', import.meta.env.VITE_PUZZLE_DEPENDENCY_AUDITOR_URL),
     requiredTier: 'pro',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['puzzles', 'QA', 'deadlock detection'],
   },
   {
@@ -38,7 +38,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('room-layout-risk-mapper', import.meta.env.VITE_ROOM_LAYOUT_RISK_MAPPER_URL),
     requiredTier: 'enterprise',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['layout', 'safety', 'operations'],
   },
   {
@@ -64,7 +64,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('immersive-production-bible-builder', import.meta.env.VITE_PRODUCTION_BIBLE_BUILDER_URL),
     requiredTier: 'enterprise',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['production bible', 'documentation', 'build plan'],
   },
   {
@@ -77,7 +77,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('ai-escape-room-generator', import.meta.env.VITE_AI_ESCAPE_ROOM_GENERATOR_URL),
     requiredTier: 'pro',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['AI', 'concept generation', 'puzzles'],
   },
   {
@@ -90,7 +90,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('roomready-ops', import.meta.env.VITE_ROOMREADY_OPS_URL),
     requiredTier: 'pro',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['checklists', 'maintenance', 'daily ops'],
   },
   {
@@ -103,7 +103,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('gm-script-library', import.meta.env.VITE_GM_SCRIPT_LIBRARY_URL),
     requiredTier: 'pro',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['scripts', 'hints', 'staff training'],
   },
   {
@@ -116,7 +116,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('party-profit-planner', import.meta.env.VITE_PARTY_PROFIT_PLANNER_URL),
     requiredTier: 'enterprise',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['pricing', 'events', 'profit'],
   },
   {
@@ -129,7 +129,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('escape-room-marketing-playbook-generator', import.meta.env.VITE_MARKETING_PLAYBOOK_GENERATOR_URL),
     requiredTier: 'free',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['marketing', 'playbooks', 'lead gen'],
   },
   {
@@ -142,7 +142,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('escape-room-marketing-audit-tool', import.meta.env.VITE_MARKETING_AUDIT_TOOL_URL),
     requiredTier: 'free',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['audit', 'scorecard', 'lead gen'],
   },
   {
@@ -155,7 +155,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('review-scorecard-analyzer', import.meta.env.VITE_REVIEW_SCORECARD_ANALYZER_URL),
     requiredTier: 'pro',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['reviews', 'reputation', 'insights'],
   },
   {
@@ -168,7 +168,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('seasonal-campaign-builder', import.meta.env.VITE_SEASONAL_CAMPAIGN_BUILDER_URL),
     requiredTier: 'pro',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['campaigns', 'seasonal', 'promotions'],
   },
   {
@@ -181,7 +181,7 @@ export const apps: ImmersiveKitApp[] = [
     url: getToolUrl('schema-markup-generator', import.meta.env.VITE_SCHEMA_MARKUP_GENERATOR_URL),
     requiredTier: 'pro',
     status: 'live_or_ready',
-    supportsSsoLaunch: false,
+    supportsSsoLaunch: true,
     tags: ['schema', 'SEO', 'AI visibility'],
   },
   {
@@ -193,8 +193,8 @@ export const apps: ImmersiveKitApp[] = [
     icon: 'Flame',
     url: getToolUrl('content-os-mastermind-addon', import.meta.env.VITE_CONTENT_OS_MASTERMIND_URL),
     requiredTier: 'enterprise',
-    status: 'planned',
-    supportsSsoLaunch: false,
+    status: 'live_or_ready',
+    supportsSsoLaunch: true,
     tags: ['copy critique', 'content', 'mastermind'],
   },
 ];
