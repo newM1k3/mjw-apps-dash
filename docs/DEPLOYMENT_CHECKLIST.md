@@ -65,7 +65,7 @@ Add these as tools go live. A missing variable renders the card with a disabled 
 | `VITE_PUZZLE_DEPENDENCY_AUDITOR_URL` | Puzzle Dependency Auditor |
 | `VITE_ROOM_LAYOUT_RISK_MAPPER_URL` | Room Layout Risk Mapper |
 | `VITE_PUZZLE_FLOW_VISUALIZER_URL` | Escape Room Puzzle Flow Visualizer |
-| `VITE_PRODUCTION_BIBLE_BUILDER_URL` | Immersive Production Bible Builder |
+| `VITE_PRODUCTION_BLUEPRINT_BUILDER_URL` | Immersive Production Blueprint Builder |
 | `VITE_AI_ESCAPE_ROOM_GENERATOR_URL` | AI Escape Room Generator |
 | `VITE_ROOMREADY_OPS_URL` | RoomReady Ops |
 | `VITE_GM_SCRIPT_LIBRARY_URL` | GM Script Library |
@@ -89,7 +89,7 @@ Add these as tools go live. A missing variable renders the card with a disabled 
 - [ ] Set `VITE_PUZZLE_DEPENDENCY_AUDITOR_URL` to the permanent domain.
 - [ ] Set `VITE_ROOM_LAYOUT_RISK_MAPPER_URL` to the permanent domain.
 - [ ] Set `VITE_PUZZLE_FLOW_VISUALIZER_URL` to the permanent domain.
-- [ ] Set `VITE_PRODUCTION_BIBLE_BUILDER_URL` to the permanent domain.
+- [ ] Set `VITE_PRODUCTION_BLUEPRINT_BUILDER_URL` to the permanent domain.
 - [ ] Set `VITE_AI_ESCAPE_ROOM_GENERATOR_URL` to the permanent domain.
 - [ ] Set `VITE_ROOMREADY_OPS_URL` to the permanent domain.
 - [ ] Set `VITE_GM_SCRIPT_LIBRARY_URL` to the permanent domain.

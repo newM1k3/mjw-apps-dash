@@ -28,7 +28,7 @@ export default function SubscriptionGate({ userTier }: Props) {
         <p className="text-slate-400 text-sm leading-relaxed mb-6">
           {userTier === 'free'
             ? 'Pro gives you the core toolkit used by active escape room owners — room ops, GM scripts, lock mapping, puzzle auditing, and marketing analysis.'
-            : 'Enterprise unlocks advanced layout risk mapping, production bibles, party profit modeling, and the Content OS Mastermind add-on.'}
+            : 'Enterprise unlocks advanced layout risk mapping, production blueprints, party profit modeling, and the Content OS Mastermind add-on.'}
         </p>
         <div className="flex flex-wrap gap-3">
           <a

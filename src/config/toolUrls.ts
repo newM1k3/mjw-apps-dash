@@ -20,7 +20,7 @@ export const temporaryToolUrls: Record<string, string> = {
   'puzzle-dependency-auditor':         'https://puzzle-dependency-au-7azs.bolt.host',
   'room-layout-risk-mapper':           'https://layout-risk-mapper.bolt.host',
   'puzzle-flow-visualizer':            'https://puzzle-flow-build.netlify.app/',
-  'immersive-production-bible-builder':'https://mjw-immersive-produc-be4v.bolt.host',
+  'immersive-production-blueprint-builder':'https://mjw-immersive-produc-be4v.bolt.host',
   'ai-escape-room-generator':          'https://ai-escape-room-generator.netlify.app/',
 
   // Operations Suite

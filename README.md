@@ -22,7 +22,7 @@ Tools are organised into three suites:
 
 | Suite | Purpose |
 |---|---|
-| **Design Suite** | Plan rooms before construction starts — lock mapping, puzzle flow, risk mapping, production bibles, AI concept generation. |
+| **Design Suite** | Plan rooms before construction starts — lock mapping, puzzle flow, risk mapping, production blueprints, AI concept generation. |
 | **Operations Suite** | Keep rooms running — daily readiness, GM scripts, party profit modelling. |
 | **Marketing Suite** | Fill seats — playbooks, audits, review analysis, seasonal campaigns, schema markup, copy critique. |
 

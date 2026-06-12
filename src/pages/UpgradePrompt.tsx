@@ -50,7 +50,7 @@ const tiers = [
     features: [
       'Everything in Pro',
       'Room Layout Risk Mapper',
-      'Immersive Production Bible Builder',
+      'Immersive Production Blueprint Builder',
       'Party Profit Planner',
       'Content OS — Mastermind Add-on',
       'Priority support',
