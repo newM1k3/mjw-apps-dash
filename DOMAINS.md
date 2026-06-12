@@ -12,9 +12,10 @@ Netlify DNS panel.
 - **Apex** `immersivekit.ca` → Netlify (`A 75.2.60.5`). ✓
 - **Dashboard** `www.immersivekit.ca` → `apps-dash-board.netlify.app`. ✓
 - **Schema tool** `schema.immersivekit.ca` (+ `www.schema`) → `schema-markup-gen.netlify.app`, wildcard Let's Encrypt cert. ✓
-- **Freebies (funnel, not dashboard tools):** `audit.immersivekit.ca` (GEO Audit Tool)
-  and `roast.immersivekit.ca` (The Shutdown) → cPanel `A 66.102.132.177`. Carried into
-  Netlify DNS on delegation — confirm they're listed so they survive cache expiry.
+- **Freebies (funnel, not dashboard tools):** `audit.immersivekit.ca` →
+  `geo-audit-tool.netlify.app`, `roast.immersivekit.ca` → `roast-my-site.netlify.app`.
+  Both on Netlify. ✓
+- **Email auth records:** none in the zone yet (see Email section) — still to add.
 
 ---
 
@@ -61,9 +62,10 @@ auto-creates the DNS record **and** provisions SSL. Per tool:
 
 That's the whole recipe. The 10 Bolt-hosted tools just need step 1 first.
 
-### For non-Netlify hosts (e.g. the cPanel freebies)
+### For a non-Netlify host
 
-Add the record manually in Netlify DNS, e.g. `A  audit  66.102.132.177`.
+Add the record manually in Netlify DNS — an `A` record to the host's IP, or a
+`CNAME` to its hostname.
 
 ---
 
