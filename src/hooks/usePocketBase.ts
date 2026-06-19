@@ -35,6 +35,13 @@ export function usePocketBase() {
     return authData;
   }, []);
 
+  const signup = useCallback(async (email: string, password: string, name: string) => {
+    await pb.collection('users').create({ email, password, passwordConfirm: password, name });
+    const authData = await pb.collection('users').authWithPassword(email, password);
+    setUser(toPocketBaseUser(authData.record));
+    return authData;
+  }, []);
+
   const logout = useCallback(() => {
     pb.authStore.clear();
     setUser(null);
@@ -42,5 +49,5 @@ export function usePocketBase() {
 
   const tier = normalizeTier(user?.tier);
 
-  return { user, loading, tier, login, logout };
+  return { user, loading, tier, login, signup, logout };
 }

@@ -1,17 +1,28 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { usePocketBase } from '../hooks/usePocketBase';
-import { KeyRound, AlertCircle } from 'lucide-react';
+import { Sparkles, AlertCircle } from 'lucide-react';
 
-function loginErrorMessage(err: unknown): string {
+function signupErrorMessage(err: unknown): string {
   if (err && typeof err === 'object') {
     const e = err as Record<string, unknown>;
-    // PocketBase returns status 400 for bad credentials and 0/network errors otherwise
     const status = typeof e['status'] === 'number' ? e['status'] : 0;
-    if (status === 400) return 'Incorrect email or password. Please try again.';
-    if (status === 403) return 'Your account does not have permission to sign in.';
-    if (status === 429) return 'Too many sign-in attempts. Please wait a moment and try again.';
-    // Network / fetch failure — no status
+
+    // PocketBase puts per-field errors on response.data — surface the first one
+    // because most signup failures are validation (email taken, weak password).
+    const response = e['response'] as Record<string, unknown> | undefined;
+    const data = response?.['data'] as Record<string, { message?: string }> | undefined;
+    if (data && Object.keys(data).length) {
+      const [field, detail] = Object.entries(data)[0];
+      if (field === 'email' && detail?.message?.toLowerCase().includes('exists')) {
+        return 'An account with that email already exists. Sign in instead.';
+      }
+      return `${field}: ${detail?.message ?? 'invalid'}`;
+    }
+
+    if (status === 400) return 'Please check your details and try again.';
+    if (status === 403) return 'Signups are not currently enabled. Please contact support.';
+    if (status === 429) return 'Too many attempts. Please wait a moment and try again.';
     if (status === 0 || e['isAbort'] === true) {
       return 'Could not reach the server. Check your connection and try again.';
     }
@@ -19,10 +30,11 @@ function loginErrorMessage(err: unknown): string {
   return 'Something went wrong. Please try again.';
 }
 
-export default function Login() {
+export default function Signup() {
   const navigate = useNavigate();
-  const { login } = usePocketBase();
+  const { signup } = usePocketBase();
 
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -33,10 +45,10 @@ export default function Login() {
     setError('');
     setLoading(true);
     try {
-      await login(email, password);
+      await signup(email, password, name);
       navigate('/dashboard');
     } catch (err) {
-      setError(loginErrorMessage(err));
+      setError(signupErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -52,10 +64,10 @@ export default function Login() {
       <div className="relative w-full max-w-sm">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 mb-4">
-            <KeyRound className="w-6 h-6 text-cyan-400" />
+            <Sparkles className="w-6 h-6 text-cyan-400" />
           </div>
-          <h1 className="text-2xl font-bold text-white mb-1">ImmersiveKit</h1>
-          <p className="text-slate-400 text-sm">Sign in to access your tools</p>
+          <h1 className="text-2xl font-bold text-white mb-1">Create your ImmersiveKit account</h1>
+          <p className="text-slate-400 text-sm">Set up your venue in about a minute</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-4">
@@ -65,6 +77,22 @@ export default function Login() {
               <span>{error}</span>
             </div>
           )}
+
+          <div>
+            <label className="block text-xs font-medium text-slate-400 mb-1.5" htmlFor="name">
+              Your name
+            </label>
+            <input
+              id="name"
+              type="text"
+              required
+              autoComplete="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Alex Operator"
+              className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition-colors"
+            />
+          </div>
 
           <div>
             <label className="block text-xs font-medium text-slate-400 mb-1.5" htmlFor="email">
@@ -90,10 +118,11 @@ export default function Login() {
               id="password"
               type="password"
               required
-              autoComplete="current-password"
+              minLength={8}
+              autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
+              placeholder="At least 8 characters"
               className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition-colors"
             />
           </div>
@@ -106,17 +135,17 @@ export default function Login() {
             {loading ? (
               <>
                 <span className="w-4 h-4 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
-                Signing in...
+                Creating account...
               </>
             ) : (
-              'Sign In'
+              'Create account'
             )}
           </button>
 
           <p className="text-center text-slate-500 text-xs pt-1">
-            New to ImmersiveKit?{' '}
-            <Link to="/signup" className="text-cyan-400 hover:text-cyan-300">
-              Create an account
+            Already have an account?{' '}
+            <Link to="/login" className="text-cyan-400 hover:text-cyan-300">
+              Sign in
             </Link>
           </p>
         </form>

@@ -16,27 +16,26 @@
  */
 export const temporaryToolUrls: Record<string, string> = {
   // Design Suite
-  'lock-mapping-studio':               'https://lockmap-studio-u8m3.bolt.host',
-  'puzzle-dependency-auditor':         'https://puzzle-dependency-au-7azs.bolt.host',
-  'room-layout-risk-mapper':           'https://layout-risk-mapper.bolt.host',
-  'puzzle-flow-visualizer':            'https://puzzle-flow-build.netlify.app/',
-  'immersive-production-blueprint-builder':'https://mjw-immersive-produc-be4v.bolt.host',
-  'ai-escape-room-generator':          'https://ai-escape-room-generator.netlify.app/',
+  'lock-mapping-studio':                        'https://lock-map-studio.netlify.app',
+  'puzzle-dependency-auditor':                  'https://puzzle-auditor.netlify.app',
+  'room-layout-risk-mapper':                    'https://layout.immersivekit.ca',
+  'puzzle-flow-visualizer':                     'https://puzzle-flow-build.netlify.app',
+  'immersive-production-bible-builder':         'https://immersive-product-builder.netlify.app',
+  'ai-escape-room-generator':                   'https://ai-escape-room-generator.netlify.app',
 
   // Operations Suite
-  'roomready-ops':                     'https://room-ready-ops.netlify.app/',
-  'gm-script-library':                 'https://9t009kgmnt6mzpko8bod1bhfm.bolt.host',
-  'party-profit-planner':              'https://party-profit-planner-321a.bolt.host',
+  'roomready-ops':                              'https://room-ready-ops.netlify.app',
+  'gm-script-library':                          'https://gm-script-library.netlify.app',
+  'party-profit-planner':                       'https://party-profit-planner.netlify.app',
+  'corporate-proposal-generator':               'https://corporate-proposal-genr8or.netlify.app',
 
   // Marketing Suite
-  'escape-room-marketing-playbook-generator': 'https://mjw-escape-room-play-ca5k.bolt.host',
-  'escape-room-marketing-audit-tool':         'https://escape-room-marketin-gyv2.bolt.host',
-  'review-scorecard-analyzer':                'https://reviewscorecard-io-m-wtat.bolt.host',
-  'seasonal-campaign-builder':                'https://campaign-builder-sea-3t1g.bolt.host',
-  'schema-markup-generator':                  'https://local-seo-schema-gen-nn3b.bolt.host',
-
-  // No temporary URL available yet — leave blank until a real URL is supplied.
-  'content-os-mastermind-addon':       '',
+  'escape-room-marketing-playbook-generator':   'https://marketing-playbook-generator.netlify.app',
+  'escape-room-marketing-audit-tool':           'https://marketing-audit-tool.netlify.app',
+  'review-scorecard-analyzer':                  'https://review-scorecard-analyzer.netlify.app',
+  'seasonal-campaign-builder':                  'https://seasonal-campaign-builder.netlify.app',
+  'schema-markup-generator':                    'https://schema-markup-gen.netlify.app',
+  'content-os-mastermind-addon':                'https://mastermind-content-addon.netlify.app',
 };
 
 /**
