@@ -154,7 +154,7 @@ export const apps: ImmersiveKitApp[] = [
     icon: 'Star',
     url: getToolUrl('review-scorecard-analyzer', import.meta.env.VITE_REVIEW_SCORECARD_ANALYZER_URL),
     requiredTier: 'pro',
-    status: 'coming_soon',
+    status: 'live_or_ready',
     supportsSsoLaunch: true,
     tags: ['reviews', 'reputation', 'insights'],
   },
