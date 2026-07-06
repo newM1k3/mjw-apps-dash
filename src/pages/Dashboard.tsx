@@ -19,6 +19,7 @@ const tabs: { id: FilterTab; label: string }[] = [
   { id: 'design', label: 'Design Suite' },
   { id: 'operations', label: 'Operations Suite' },
   { id: 'marketing', label: 'Marketing Suite' },
+  { id: 'funnel', label: 'Funnel & SEO' },
 ];
 
 const statusOptions: { id: StatusFilter; label: string }[] = [
@@ -33,6 +34,7 @@ const tabAccent: Record<FilterTab, string> = {
   design: 'data-[active=true]:text-cyan-300 data-[active=true]:bg-cyan-500/10 data-[active=true]:border-cyan-500/30',
   operations: 'data-[active=true]:text-emerald-300 data-[active=true]:bg-emerald-500/10 data-[active=true]:border-emerald-500/30',
   marketing: 'data-[active=true]:text-amber-300 data-[active=true]:bg-amber-500/10 data-[active=true]:border-amber-500/30',
+  funnel: 'data-[active=true]:text-violet-300 data-[active=true]:bg-violet-500/10 data-[active=true]:border-violet-500/30',
 };
 
 function isPocketBaseUrlValid(): boolean {
@@ -81,7 +83,7 @@ export default function Dashboard() {
     });
   }, [activeTab, statusFilter, search]);
 
-  const suites: AppSuite[] = ['design', 'operations', 'marketing'];
+  const suites: AppSuite[] = ['design', 'operations', 'marketing', 'funnel'];
   const suitesToRender = activeTab === 'all' ? suites : [activeTab as AppSuite];
 
   const totalTools = apps.length;
@@ -125,7 +127,7 @@ export default function Dashboard() {
         <div className="relative z-20 flex items-center gap-2.5 px-4 py-2.5 bg-teal-500/10 border-b border-teal-500/20 text-teal-300 text-xs">
           <FlaskConical className="w-3.5 h-3.5 flex-shrink-0" />
           <span>
-            <strong>Beta access enabled</strong> — all 15 tools are temporarily unlocked for testing. Tier badges reflect the production plan each tool will require.
+            <strong>Beta access enabled</strong> — all tools are temporarily unlocked for testing. Tier badges reflect the production plan each tool will require.
           </span>
         </div>
       )}
@@ -168,7 +170,7 @@ export default function Dashboard() {
             <span className="text-slate-500">Fill more seats.</span>
           </h1>
           <p className="text-slate-400 text-sm max-w-xl leading-relaxed">
-            15 tools across three suites, structured to take you from room concept to opening day to a full calendar.
+            {totalTools} tools across four suites, structured to take you from room concept to opening day to a full calendar.
           </p>
         </div>
 
