@@ -1,6 +1,6 @@
 export type UserTier = 'free' | 'pro' | 'enterprise';
 
-export type AppSuite = 'design' | 'operations' | 'marketing';
+export type AppSuite = 'design' | 'operations' | 'marketing' | 'funnel';
 
 export type AppStatus = 'live_or_ready' | 'planned' | 'coming_soon';
 

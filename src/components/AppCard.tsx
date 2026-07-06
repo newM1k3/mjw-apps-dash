@@ -1,7 +1,8 @@
 import {
   Network, GitBranch, Map, Workflow, BookOpenText, Sparkles,
   ClipboardCheck, FileText, Calculator, Megaphone, Gauge,
-  Star, CalendarDays, Code2, Flame, Lock, ExternalLink, ArrowUpRight, AlertCircle, FlaskConical,
+  Star, CalendarDays, Code2, Flame, Briefcase, PenLine, MapPin,
+  Lock, ExternalLink, ArrowUpRight, AlertCircle, FlaskConical,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { ImmersiveKitApp, UserTier } from '../types';
@@ -14,19 +15,21 @@ import StatusBadge from './StatusBadge';
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Network, GitBranch, Map, Workflow, BookOpenText, Sparkles,
   ClipboardCheck, FileText, Calculator, Megaphone, Gauge,
-  Star, CalendarDays, Code2, Flame,
+  Star, CalendarDays, Code2, Flame, Briefcase, PenLine, MapPin,
 };
 
 const suiteAccent: Record<string, string> = {
   design: 'group-hover:border-cyan-500/50 [&_.icon-wrap]:bg-cyan-500/10 [&_.icon-wrap]:text-cyan-400',
   operations: 'group-hover:border-emerald-500/50 [&_.icon-wrap]:bg-emerald-500/10 [&_.icon-wrap]:text-emerald-400',
   marketing: 'group-hover:border-amber-500/50 [&_.icon-wrap]:bg-amber-500/10 [&_.icon-wrap]:text-amber-400',
+  funnel: 'group-hover:border-violet-500/50 [&_.icon-wrap]:bg-violet-500/10 [&_.icon-wrap]:text-violet-400',
 };
 
 const suiteGlow: Record<string, string> = {
   design: 'shadow-cyan-500/5',
   operations: 'shadow-emerald-500/5',
   marketing: 'shadow-amber-500/5',
+  funnel: 'shadow-violet-500/5',
 };
 
 interface Props {

@@ -17,6 +17,11 @@ const accentConfig: Record<AppSuite, { bar: string; eyebrow: string; border: str
     eyebrow: 'text-amber-400',
     border: 'border-l-amber-500/50',
   },
+  funnel: {
+    bar: 'bg-violet-500',
+    eyebrow: 'text-violet-400',
+    border: 'border-l-violet-500/50',
+  },
 };
 
 interface Props {
