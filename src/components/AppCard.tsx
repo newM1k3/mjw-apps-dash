@@ -2,7 +2,7 @@ import {
   Network, GitBranch, Map, Workflow, BookOpenText, Sparkles,
   ClipboardCheck, FileText, Calculator, Megaphone, Gauge,
   Star, CalendarDays, Code2, Flame, Briefcase, PenLine, MapPin,
-  Lock, ExternalLink, ArrowUpRight, AlertCircle, FlaskConical,
+  MessageCircle, Lock, ExternalLink, ArrowUpRight, AlertCircle, FlaskConical,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { ImmersiveKitApp, UserTier } from '../types';
@@ -15,7 +15,7 @@ import StatusBadge from './StatusBadge';
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Network, GitBranch, Map, Workflow, BookOpenText, Sparkles,
   ClipboardCheck, FileText, Calculator, Megaphone, Gauge,
-  Star, CalendarDays, Code2, Flame, Briefcase, PenLine, MapPin,
+  Star, CalendarDays, Code2, Flame, Briefcase, PenLine, MapPin, MessageCircle,
 };
 
 const suiteAccent: Record<string, string> = {
