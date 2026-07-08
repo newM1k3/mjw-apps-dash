@@ -23,6 +23,7 @@ export const permanentToolUrls: Record<string, string> = {
   'gm-script-library':                          'https://scripts.immersivekit.ca',
   'roomready-ops':                              'https://ready.immersivekit.ca',
   'party-profit-planner':                       'https://profit.immersivekit.ca',
+  'welcome-desk':                               'https://www.thewelcomedesk.com',
 
   // Marketing Suite
   'corporate-proposal-generator':               'https://pitch.immersivekit.ca',
