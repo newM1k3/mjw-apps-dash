@@ -34,7 +34,7 @@ export function useHasVenue(userId: string | undefined): HasVenueState {
     setState({ hasVenue: null, loading: true });
 
     pb.collection('memberships')
-      .getList(1, 1, { filter: `user = "${userId}"` })
+      .getList(1, 1, { filter: pb.filter('user = {:userId}', { userId }) })
       .then((res) => {
         if (!cancelled) setState({ hasVenue: res.totalItems > 0, loading: false });
       })
